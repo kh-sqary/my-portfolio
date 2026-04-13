@@ -99,11 +99,11 @@
 
   // ── FORM VALIDATION & SUBMISSION ──
   const formSubmit = document.querySelector('.form-submit');
+  const formCard = document.querySelector('#contactForm');
   const formInputs = document.querySelectorAll('.form-group input, .form-group textarea');
   
-  if(formSubmit) {
+  if(formCard && formSubmit) {
     // Add success overlay HTML to the card dynamically
-    const formCard = document.querySelector('.contact-form-card');
     const overlayHtml = `
       <div class="form-success-overlay">
         <div class="form-success-icon">✓</div>
@@ -114,32 +114,43 @@
     formCard.insertAdjacentHTML('beforeend', overlayHtml);
     const successOverlay = document.querySelector('.form-success-overlay');
 
-    formSubmit.addEventListener('click', (e) => {
-      e.preventDefault();
-      let hasError = false;
+    formCard.addEventListener('submit', async (e) => {
+      e.preventDefault(); // Stop standard form submission
       
-      formInputs.forEach(input => {
-        input.classList.remove('error');
-        // Basic validation for empty
-        if(input.value.trim() === '') {
-          input.classList.add('error');
-          hasError = true;
-          // remove class after animation ends to allow shake to trigger again if needed
-          setTimeout(() => input.classList.remove('error'), 400); 
-        }
-      });
-
-      if(!hasError) {
-        formSubmit.classList.add('loading');
-        // Simulate network request
-        setTimeout(() => {
+      formSubmit.classList.add('loading');
+      const formData = new FormData(formCard);
+      
+      try {
+        const response = await fetch(formCard.action, {
+          method: formCard.method,
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+        
+        if (response.ok) {
           formSubmit.classList.remove('loading');
           successOverlay.classList.add('active');
-          formInputs.forEach(input => input.value = '');
+          formCard.reset();
           // Hide overlay after 4 seconds
           setTimeout(() => successOverlay.classList.remove('active'), 4000);
-        }, 1500);
+        } else {
+          formSubmit.classList.remove('loading');
+          alert('Oops! There was a problem submitting your form. Please check your data.');
+        }
+      } catch (error) {
+        formSubmit.classList.remove('loading');
+        alert('Network error! Please try again later.');
       }
+    });
+
+    // Custom shake animation on built-in HTML5 validation fail
+    formInputs.forEach(input => {
+      input.addEventListener('invalid', () => {
+        input.classList.remove('error');
+        void input.offsetWidth; // trigger reflow to reset animation
+        input.classList.add('error');
+        setTimeout(() => input.classList.remove('error'), 400); 
+      });
     });
   }
 
