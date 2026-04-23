@@ -198,7 +198,7 @@
                     <label>Preferred Colors</label>
                     <div class="color-picker-wrapper">
                         <input type="color" id="preferredColorBtn" value="#000000" />
-                        <button type="button" class="btn-secondary" id="addPreferredColor">Add Color</button>
+                        <button type="button" class="btn-text-blue" id="addPreferredColor" style="padding: 0 1rem; font-size: 0.75rem;">+ Add Color</button>
                     </div>
                     <div class="color-swatches" id="preferredColorsContainer"></div>
                     <input type="hidden" name="preferredColors" id="preferredColorsData" />
@@ -207,7 +207,7 @@
                     <label>Colors to Avoid</label>
                     <div class="color-picker-wrapper">
                         <input type="color" id="avoidColorBtn" value="#ff0000" />
-                        <button type="button" class="btn-secondary" id="addAvoidColor">Add Color</button>
+                        <button type="button" class="btn-text-blue" id="addAvoidColor" style="padding: 0 1rem; font-size: 0.75rem;">+ Add Color</button>
                     </div>
                     <div class="color-swatches" id="avoidColorsContainer"></div>
                     <input type="hidden" name="avoidColors" id="avoidColorsData" />
@@ -217,7 +217,7 @@
                     <div id="referenceLinksContainer">
                         <input type="url" name="referenceLinks[]" placeholder="https://pinterest.com/..." class="repeater-input" />
                     </div>
-                    <button type="button" class="btn-secondary sm mt-1" id="addLinkBtn">+ Add Another Link</button>
+                    <button type="button" class="btn-text-blue mt-1" id="addLinkBtn" style="padding: 0.5rem 0;">+ Add Another Link</button>
                 </div>
             </div>
 
@@ -289,6 +289,7 @@
 
     <div id="cursor"></div>
     <div id="cursor-ring"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="brief.js"></script>
     <script src="main.js"></script>
 </body>

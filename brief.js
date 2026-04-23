@@ -133,26 +133,36 @@ function generateSummary() {
     data.scope = formData.getAll('scope').join(', ');
     data.referenceLinks = formData.getAll('referenceLinks[]').filter(v=>v).join(', ');
 
+    const visualSlider = (left, val, right) => `
+        <div style="display:flex; align-items:center; gap: 1rem; margin-bottom: 0.8rem; font-size: 0.85rem; font-weight: 500;">
+            <div style="width: 80px; text-align: right; color: #888;">${left}</div>
+            <div style="flex: 1; height: 6px; background: rgba(255,255,255,0.1); border-radius: 4px; position: relative; max-width: 300px;">
+                <div style="position: absolute; top: 50%; left: ${val}%; transform: translate(-50%, -50%); width: 18px; height: 18px; border-radius: 50%; background: var(--blue-line); border: 3px solid #111; box-shadow: 0 0 0 1px var(--blue-line);"></div>
+            </div>
+            <div style="width: 80px; text-align: left; color: #888;">${right}</div>
+        </div>
+    `;
+
     const html = `
-        <div class="summary-item"><div class="summary-label">Client Details</div><div class="summary-value">${data.clientName} <br> ${data.clientEmail} <br> ${data.clientWhatsapp}</div></div>
-        <div class="summary-item"><div class="summary-label">Brand Name</div><div class="summary-value">${data.brandName}</div></div>
-        <div class="summary-item"><div class="summary-label">Business Type</div><div class="summary-value">${data.businessType}</div></div>
-        <div class="summary-item"><div class="summary-label">Description</div><div class="summary-value">${data.description}</div></div>
-        <div class="summary-item"><div class="summary-label">Target Audience (Age)</div><div class="summary-value">${data.ageGroup || 'None selected'}</div></div>
-        <div class="summary-item"><div class="summary-label">Brand Goals</div><div class="summary-value">${data.mainGoal}</div></div>
-        <div class="summary-item"><div class="summary-label">Budget</div><div class="summary-value">${data.budget}</div></div>
-        <div class="summary-item"><div class="summary-label">Deadline</div><div class="summary-value">${data.deadline}</div></div>
-        <div class="summary-item"><div class="summary-label">Scope</div><div class="summary-value">${data.scope || 'None selected'}</div></div>
-        <div class="summary-item">
-            <div class="summary-label">Brand Archetype Profile</div>
-            <div class="summary-value" style="font-size:0.9rem;">
-                Modern (${data.slider1}%) - Classic<br>
-                Youthful (${data.slider2}%) - Mature<br>
-                Masculine (${data.slider3}%) - Feminine<br>
-                Playful (${data.slider4}%) - Formal<br>
-                Economical (${data.slider5}%) - Premium<br>
-                Organic (${data.slider6}%) - Geometric<br>
-                Symbolic (${data.slider7}%) - Textual
+        <div id="pdfExportArea" style="padding-top: 1rem;">
+            <div class="summary-item"><div class="summary-label">Client Details</div><div class="summary-value">${data.clientName} <br> ${data.clientEmail} <br> ${data.clientWhatsapp}</div></div>
+            <div class="summary-item"><div class="summary-label">Brand Name</div><div class="summary-value">${data.brandName}</div></div>
+            <div class="summary-item"><div class="summary-label">Business Type</div><div class="summary-value">${data.businessType}</div></div>
+            <div class="summary-item"><div class="summary-label">Description</div><div class="summary-value">${data.description}</div></div>
+            <div class="summary-item"><div class="summary-label">Target Audience (Age)</div><div class="summary-value">${data.ageGroup || 'None selected'}</div></div>
+            <div class="summary-item"><div class="summary-label">Brand Goals</div><div class="summary-value">${data.mainGoal}</div></div>
+            <div class="summary-item"><div class="summary-label">Budget</div><div class="summary-value">${data.budget}</div></div>
+            <div class="summary-item"><div class="summary-label">Deadline</div><div class="summary-value">${data.deadline}</div></div>
+            <div class="summary-item"><div class="summary-label">Scope</div><div class="summary-value">${data.scope || 'None selected'}</div></div>
+            <div class="summary-item" style="border-bottom: none;">
+                <div class="summary-label" style="margin-bottom: 1.5rem;">Brand Archetype Profile</div>
+                ${visualSlider('Modern', data.slider1, 'Classic')}
+                ${visualSlider('Youthful', data.slider2, 'Mature')}
+                ${visualSlider('Masculine', data.slider3, 'Feminine')}
+                ${visualSlider('Playful', data.slider4, 'Formal')}
+                ${visualSlider('Economical', data.slider5, 'Premium')}
+                ${visualSlider('Organic', data.slider6, 'Geometric')}
+                ${visualSlider('Symbolic', data.slider7, 'Textual')}
             </div>
         </div>
     `;
@@ -206,19 +216,39 @@ form.addEventListener('submit', async (e) => {
             // Proceed to Thank You step anyway so the client gets an email via Formspree.
         }
 
-        // 3. Send to WhatsApp
+        // 3. Generate PDF and Send to WhatsApp
+        const pdfElement = document.getElementById('pdfExportArea');
+        const pdfOpt = {
+            margin:       0.5,
+            filename:     `${payload.brandName || 'Project'}-Brief.pdf`,
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2, useCORS: true, backgroundColor: '#111' },
+            jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+        };
+
+        try {
+            if (window.html2pdf) {
+                await html2pdf().set(pdfOpt).from(pdfElement).save();
+            } else {
+                console.warn("html2pdf library not loaded");
+            }
+        } catch (e) {
+            console.error("PDF generation failed", e);
+        }
+
         const waNumber = "201xxxxxxxxx"; // REPLACE WITH YOUR NUMBER
-        let waText = `*New Client Brief from ${payload.clientName}*\n\n`;
-        waText += `*Email:* ${payload.clientEmail}\n`;
-        waText += `*WhatsApp:* ${payload.clientWhatsapp}\n\n`;
-        waText += `*Brand Name:* ${payload.brandName}\n`;
-        waText += `*Business Type:* ${payload.businessType}\n`;
-        waText += `*Budget:* ${payload.budget}\n`;
-        waText += `*Deadline:* ${payload.deadline}\n\n`;
-        waText += `(Check your email or Dashboard for full details!)`;
+        let waText = `*مرحباً خالد،*\n\n`;
+        waText += `لقد قمت للتو بتعبئة البريف الخاص بمشروعي (*${payload.brandName}*).\n`;
+        waText += `سأقوم الآن بإرفاق ملف الـ PDF الذي يحتوي على كافة التفاصيل!\n\n`;
+        waText += `*الاسم:* ${payload.clientName}\n`;
+        waText += `*الإيميل:* ${payload.clientEmail}\n`;
         
         const encodedText = encodeURIComponent(waText);
-        window.open(`https://wa.me/${waNumber}?text=${encodedText}`, '_blank');
+        
+        // Delay WhatsApp slightly to allow PDF to start downloading
+        setTimeout(() => {
+            window.open(`https://wa.me/${waNumber}?text=${encodedText}`, '_blank');
+        }, 1500);
 
         // 4. Show Thank You step
         currentStep = 11;
