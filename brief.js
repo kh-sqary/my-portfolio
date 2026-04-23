@@ -170,7 +170,7 @@ function generateSummary() {
 }
 
 // Submission
-form.addEventListener('submit', async (e) => {
+submitBtn.addEventListener('click', async (e) => {
     e.preventDefault();
     if(currentStep !== 10) return;
     
@@ -216,14 +216,19 @@ form.addEventListener('submit', async (e) => {
             // Proceed to Thank You step anyway so the client gets an email via Formspree.
         }
 
-        // 3. Generate PDF and Send to WhatsApp
-        const pdfElement = document.getElementById('pdfExportArea');
+        // 3. Generate PDF of all 9 steps
+        document.body.classList.add('pdf-mode');
+        document.querySelector('.brief-header').style.display = 'none';
+        document.getElementById('briefActions').style.display = 'none';
+
+        const pdfElement = document.querySelector('.brief-main');
         const pdfOpt = {
             margin:       0.5,
             filename:     `${payload.brandName || 'Project'}-Brief.pdf`,
             image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2, useCORS: true, backgroundColor: '#111' },
-            jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+            html2canvas:  { scale: 2, useCORS: true, backgroundColor: '#111', windowWidth: 1200 },
+            jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' },
+            pagebreak:    { mode: ['css', 'legacy'] }
         };
 
         try {
@@ -235,6 +240,11 @@ form.addEventListener('submit', async (e) => {
         } catch (e) {
             console.error("PDF generation failed", e);
         }
+
+        // Restore UI
+        document.body.classList.remove('pdf-mode');
+        document.querySelector('.brief-header').style.display = '';
+        document.getElementById('briefActions').style.display = 'flex';
 
         const waNumber = "201xxxxxxxxx"; // REPLACE WITH YOUR NUMBER
         

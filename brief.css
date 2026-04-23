@@ -316,3 +316,13 @@ body {
 .brand-slider::-webkit-slider-thumb:hover {
   transform: scale(1.2);
 }
+
+/* PDF Print Mode */
+.pdf-mode .step-card {
+    display: flex !important;
+    page-break-after: always;
+    margin-bottom: 2rem;
+}
+.pdf-mode #step-10, .pdf-mode #step-11 {
+    display: none !important;
+}
