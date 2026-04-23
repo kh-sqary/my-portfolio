@@ -191,12 +191,39 @@ submitBtn.addEventListener('click', async (e) => {
     payload.submissionDate = new Date().toISOString();
 
     try {
+        const getUnicodeSlider = (val, max = 100, length = 10) => {
+            const pos = Math.round((val / max) * length);
+            let slider = "";
+            for(let i=0; i<=length; i++) {
+                if(i === pos) slider += "🔵";
+                else slider += "─";
+            }
+            return slider;
+        };
+
+        const formspreePayload = { ...payload };
+        formspreePayload['Brand Personality: Modern vs Classic'] = `Modern [ ${getUnicodeSlider(payload.slider1)} ] Classic`;
+        formspreePayload['Brand Personality: Youthful vs Mature'] = `Youthful [ ${getUnicodeSlider(payload.slider2)} ] Mature`;
+        formspreePayload['Brand Personality: Masculine vs Feminine'] = `Masculine [ ${getUnicodeSlider(payload.slider3)} ] Feminine`;
+        formspreePayload['Brand Personality: Playful vs Formal'] = `Playful [ ${getUnicodeSlider(payload.slider4)} ] Formal`;
+        formspreePayload['Brand Personality: Economical vs Premium'] = `Economical [ ${getUnicodeSlider(payload.slider5)} ] Premium`;
+        formspreePayload['Brand Personality: Organic vs Geometric'] = `Organic [ ${getUnicodeSlider(payload.slider6)} ] Geometric`;
+        formspreePayload['Brand Personality: Symbolic vs Textual'] = `Symbolic [ ${getUnicodeSlider(payload.slider7)} ] Textual`;
+
+        delete formspreePayload.slider1;
+        delete formspreePayload.slider2;
+        delete formspreePayload.slider3;
+        delete formspreePayload.slider4;
+        delete formspreePayload.slider5;
+        delete formspreePayload.slider6;
+        delete formspreePayload.slider7;
+
         // 1. Submit to Formspree for email notification
         try {
             await fetch('https://formspree.io/f/maqawzbd', {
                 method: 'POST',
                 headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
+                body: JSON.stringify(formspreePayload)
             });
         } catch (err) {
             console.error("Email notification failed", err);
@@ -213,50 +240,11 @@ submitBtn.addEventListener('click', async (e) => {
             });
         } catch (fbError) {
             console.error("Firebase module failed to load. This is expected if running locally via file://", fbError);
-            // Proceed to Thank You step anyway so the client gets an email via Formspree.
         }
-
-        // 3. Generate PDF of all 9 steps
-        document.body.classList.add('pdf-mode');
-        document.querySelector('.brief-header').style.display = 'none';
-        document.getElementById('briefActions').style.display = 'none';
-
-        const pdfElement = document.querySelector('.brief-main');
-        const pdfOpt = {
-            margin:       0.5,
-            filename:     `${payload.brandName || 'Project'}-Brief.pdf`,
-            image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2, useCORS: true, backgroundColor: '#111', windowWidth: 1200 },
-            jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' },
-            pagebreak:    { mode: ['css', 'legacy'] }
-        };
-
-        try {
-            if (window.html2pdf) {
-                await html2pdf().set(pdfOpt).from(pdfElement).save();
-            } else {
-                console.warn("html2pdf library not loaded");
-            }
-        } catch (e) {
-            console.error("PDF generation failed", e);
-        }
-
-        // Restore UI
-        document.body.classList.remove('pdf-mode');
-        document.querySelector('.brief-header').style.display = '';
-        document.getElementById('briefActions').style.display = 'flex';
 
         const waNumber = "201xxxxxxxxx"; // REPLACE WITH YOUR NUMBER
         
-        const getUnicodeSlider = (val, max = 100, length = 10) => {
-            const pos = Math.round((val / max) * length);
-            let slider = "";
-            for(let i=0; i<=length; i++) {
-                if(i === pos) slider += "🔵";
-                else slider += "─";
-            }
-            return slider;
-        };
+
 
         let waText = `*New Brand Brief: ${payload.brandName}*\n\n`;
         waText += `*الاسم:* ${payload.clientName}\n`;
@@ -279,14 +267,14 @@ submitBtn.addEventListener('click', async (e) => {
         waText += `*Scope:* ${payload.scope}\n`;
         waText += `*Budget:* ${payload.budget}\n`;
         waText += `*Deadline:* ${payload.deadline}\n\n`;
-        waText += `(PDF was also downloaded to the client's device!)`;
+        waText += `(This brief was also sent to your email!)`;
         
         const encodedText = encodeURIComponent(waText);
         
-        // Delay WhatsApp slightly to allow PDF to start downloading
+        // Delay WhatsApp slightly to allow email to send and transition to play
         setTimeout(() => {
             window.open(`https://wa.me/${waNumber}?text=${encodedText}`, '_blank');
-        }, 1500);
+        }, 800);
 
         // 4. Show Thank You step
         currentStep = 11;
