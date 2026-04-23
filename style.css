@@ -58,6 +58,10 @@
     --font-body: 'TerminaTest', sans-serif;
   }
 
+  .blue-dot-text {
+    color: var(--blue-line);
+  }
+
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -95,52 +99,33 @@
 
   /* ── HAMBURGER & MOBILE MENU ── */
   .hamburger {
-    display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 101;
-    width: 34px; height: 24px; justify-content: center; position: relative;
+    display: none; align-items: center; gap: 8px; cursor: pointer; z-index: 101;
   }
-  .hamburger span {
-    display: block; width: 100%; height: 2px; background: var(--white);
-    transition: all 0.4s cubic-bezier(0.7, 0, 0.3, 1);
+  .menu-text {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--white);
+    transition: color 0.3s;
+  }
+  .menu-text::before { content: 'Menu'; }
+  .hamburger.active .menu-text::before { content: 'Close'; }
+  
+  .hamburger:hover .menu-text {
+    color: var(--blue-line);
   }
   
-  .hamburger span:nth-child(2) {
-    width: 75%;
-    align-self: flex-end;
-    position: relative;
-  }
-  
-  .hamburger span:nth-child(2)::after {
-    content: '';
-    position: absolute;
-    right: -4px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 6px; height: 6px;
+  .menu-dot {
+    width: 8px; height: 8px;
     background: var(--blue-line);
     border-radius: 50%;
-    transition: all 0.5s cubic-bezier(0.7, 0, 0.3, 1);
-    box-shadow: 0 0 8px var(--blue-glow);
+    box-shadow: 0 0 10px var(--blue-glow);
+    transition: transform 0.4s cubic-bezier(0.7, 0, 0.3, 1), box-shadow 0.4s;
   }
-
-  .hamburger:hover span:nth-child(2) {
-    width: 100%;
-  }
-  .hamburger:hover span:nth-child(2)::after {
-    box-shadow: 0 0 12px var(--blue-line);
-  }
-
-  .hamburger.active span:nth-child(1) { 
-    transform: translateY(4px) rotate(45deg); 
-  }
-  
-  .hamburger.active span:nth-child(2) { 
-    width: 100%;
-    transform: translateY(-4px) rotate(-45deg); 
-  }
-  
-  .hamburger.active span:nth-child(2)::after {
-    right: 50%;
-    transform: translate(50%, -50%) scale(1.3);
+  .hamburger.active .menu-dot {
+    transform: scale(1.5);
     box-shadow: 0 0 15px var(--blue-line);
   }
 
@@ -233,6 +218,7 @@
     pointer-events: none; z-index: 9999;
     transition: transform 0.15s ease, opacity 0.15s;
     transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px var(--blue-line), 0 0 20px var(--blue-glow);
   }
   #cursor-ring {
     width: 38px; height: 38px;
@@ -770,14 +756,14 @@
   /* ── FLOATING WHATSAPP ── */
   .floating-whatsapp {
     position: fixed; bottom: 2rem; right: 2rem; z-index: 99;
-    width: 60px; height: 60px; background: #25d366; color: #fff !important;
+    width: 60px; height: 60px; background: var(--blue-line); color: #fff !important;
     border-radius: 50%; display: flex; justify-content: center; align-items: center;
-    box-shadow: 0 4px 25px rgba(37,211,102,0.4);
+    box-shadow: 0 4px 25px var(--blue-glow);
     transition: transform 0.3s cubic-bezier(.23,1,.32,1), box-shadow 0.3s; text-decoration: none;
   }
   .floating-whatsapp:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 35px rgba(37,211,102,0.6);
+    box-shadow: 0 8px 35px rgba(42,110,245,0.6);
   }
 
   /* ── ABOUT PROFILE ── */
