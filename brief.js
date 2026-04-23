@@ -237,11 +237,39 @@ form.addEventListener('submit', async (e) => {
         }
 
         const waNumber = "201xxxxxxxxx"; // REPLACE WITH YOUR NUMBER
-        let waText = `*مرحباً خالد،*\n\n`;
-        waText += `لقد قمت للتو بتعبئة البريف الخاص بمشروعي (*${payload.brandName}*).\n`;
-        waText += `سأقوم الآن بإرفاق ملف الـ PDF الذي يحتوي على كافة التفاصيل!\n\n`;
+        
+        const getUnicodeSlider = (val, max = 100, length = 10) => {
+            const pos = Math.round((val / max) * length);
+            let slider = "";
+            for(let i=0; i<=length; i++) {
+                if(i === pos) slider += "🔵";
+                else slider += "─";
+            }
+            return slider;
+        };
+
+        let waText = `*New Brand Brief: ${payload.brandName}*\n\n`;
         waText += `*الاسم:* ${payload.clientName}\n`;
-        waText += `*الإيميل:* ${payload.clientEmail}\n`;
+        waText += `*رقم الواتساب:* ${payload.clientWhatsapp}\n`;
+        waText += `*الإيميل:* ${payload.clientEmail}\n\n`;
+        waText += `*--- Business Info ---*\n`;
+        waText += `*Type:* ${payload.businessType}\n`;
+        waText += `*Description:* ${payload.description}\n`;
+        waText += `*Target Audience:* ${payload.ageGroup}\n`;
+        waText += `*Goals:* ${payload.mainGoal}\n\n`;
+        waText += `*--- Brand Personality ---*\n`;
+        waText += `Modern   [ ${getUnicodeSlider(payload.slider1)} ]   Classic\n`;
+        waText += `Youthful [ ${getUnicodeSlider(payload.slider2)} ]   Mature\n`;
+        waText += `Masculine [ ${getUnicodeSlider(payload.slider3)} ]   Feminine\n`;
+        waText += `Playful  [ ${getUnicodeSlider(payload.slider4)} ]   Formal\n`;
+        waText += `Economical [ ${getUnicodeSlider(payload.slider5)} ]   Premium\n`;
+        waText += `Organic  [ ${getUnicodeSlider(payload.slider6)} ]   Geometric\n`;
+        waText += `Symbolic [ ${getUnicodeSlider(payload.slider7)} ]   Textual\n\n`;
+        waText += `*--- Project Details ---*\n`;
+        waText += `*Scope:* ${payload.scope}\n`;
+        waText += `*Budget:* ${payload.budget}\n`;
+        waText += `*Deadline:* ${payload.deadline}\n\n`;
+        waText += `(PDF was also downloaded to the client's device!)`;
         
         const encodedText = encodeURIComponent(waText);
         

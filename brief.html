@@ -21,7 +21,7 @@
     </header>
 
     <main class="brief-main">
-        <form id="briefForm">
+        <form id="briefForm" novalidate>
             <!-- Step 1: Personal Information -->
             <div class="step-card active" id="step-1">
                 <h2>Your Information</h2>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="form-group">
                     <label>WhatsApp Number</label>
-                    <input type="tel" name="clientWhatsapp" required placeholder="+201xxxxxxxxx" />
+                    <input type="tel" name="clientWhatsapp" required placeholder="+" oninput="this.value = this.value.replace(/[^0-9+]/g, '')" />
                 </div>
             </div>
 
@@ -282,7 +282,7 @@
             <div class="brief-actions" id="briefActions">
                 <button type="button" class="btn-text-white" id="prevBtn" style="display:none;">Back</button>
                 <button type="button" class="btn-text-blue" id="nextBtn">Next Step →</button>
-                <button type="submit" class="btn-primary" id="submitBtn" style="display:none;">Submit Brief</button>
+                <button type="submit" class="btn-text-blue" id="submitBtn" style="display:none; font-weight: bold;">Submit Brief</button>
             </div>
         </form>
     </main>
