@@ -38,13 +38,16 @@
     <nav>
       <a href="#" class="nav-logo"><img src="image/logo.png" alt="Khaled Shaaban" class="site-logo"></a>
       <ul class="nav-links">
-        <li><a href="#about" class="magnetic">About</a></li>
-        <li><a href="#projects" class="magnetic">Work</a></li>
-        <li><a href="#services" class="magnetic">Services</a></li>
-        <li><a href="#contact" class="magnetic">Contact</a></li>
-        <li><a href="brief.html" class="magnetic">Start a Project</a></li>
+        <li><a href="#about" class="magnetic" data-i18n="about_label">About</a></li>
+        <li><a href="#projects" class="magnetic" data-i18n="portfolio_label">Work</a></li>
+        <li><a href="#services" class="magnetic" data-i18n="services_label">Services</a></li>
+        <li><a href="#contact" class="magnetic" data-i18n="contact_label">Contact</a></li>
+        <li><a href="brief.html" class="magnetic" data-i18n="nav_start">Start a Project</a></li>
       </ul>
-      <a href="#contact" class="nav-cta magnetic">Let's Talk</a>
+      <div style="display:flex; align-items:center;">
+        <a href="#" class="magnetic" id="langToggle" style="margin-right: 1.5rem; color: var(--gray); font-size:0.9rem; text-decoration:none; font-weight:600;">عربي</a>
+        <a href="#contact" class="nav-cta magnetic" data-i18n="contact_label">Let's Talk</a>
+      </div>
 
       <div class="hamburger magnetic">
         <span></span>
@@ -78,18 +81,18 @@
       <div class="hero-bg-glow"></div>
       <div class="hero-bg-glow2"></div>
       <div class="hero-tag">Brand Designer</div>
-      <h1 class="hero-title">
+      <h1 class="hero-title" data-i18n="hero_title">
         Brands that<br />
         <em>Live</em> &amp;<br />
         Breathe.
       </h1>
-      <p class="hero-sub">
+      <p class="hero-sub" data-i18n="hero_desc">
         I craft visual identities that speak before a word is said — logos, brand systems, and design languages built to
         last.
       </p>
       <div class="hero-actions">
-        <a href="#projects" class="btn-primary">View My Work</a>
-        <a href="#contact" class="btn-secondary">Start a Project</a>
+        <a href="#projects" class="btn-primary" data-i18n="btn_view">View My Work</a>
+        <a href="brief.html" class="btn-secondary" data-i18n="btn_start">Start a Project</a>
       </div>
 
     </section>
@@ -255,11 +258,12 @@
 
     <footer>
       <span>© 2026 Khaled Shaaban</span>
-      <span>Brand Designer — Giza, Egypt</span>
+      <span data-i18n="footer_loc">Brand Designer — Giza, Egypt</span>
     </footer>
   </main>
 
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script src="lang.js"></script>
   <script src="main.js"></script>
 </body>
 

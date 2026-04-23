@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap');
   @font-face {
     font-family: 'TerminaTest';
     src: url('fonts/TerminaTest-Thin.otf') format('opentype');
@@ -352,6 +353,21 @@
     transform: translateY(-2px);
     box-shadow: 0 0 50px rgba(42,110,245,0.5);
   }
+  
+  /* ARABIC FONT OVERRIDES */
+  body.ar-lang {
+    font-family: 'Cairo', sans-serif;
+  }
+  body.ar-lang h1, body.ar-lang h2, body.ar-lang h3, body.ar-lang h4,
+  body.ar-lang .hero-title, body.ar-lang .section-title, body.ar-lang .nav-logo,
+  body.ar-lang .btn-primary, body.ar-lang .btn-secondary, body.ar-lang .btn-text-blue {
+    font-family: 'Cairo', sans-serif;
+  }
+  body.ar-lang .stat-num {
+    font-family: 'Cairo', sans-serif;
+    font-weight: 800;
+  }
+
   .btn-text-blue {
     font-family: var(--font-display);
     font-weight: 700; font-size: 0.85rem;

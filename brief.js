@@ -1,6 +1,4 @@
-import { db } from "./firebase-config.js";
-import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
+// Firebase will be dynamically imported on submit to allow UI testing locally without CORS errors.
 const form = document.getElementById('briefForm');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
@@ -144,6 +142,18 @@ function generateSummary() {
         <div class="summary-item"><div class="summary-label">Budget</div><div class="summary-value">${data.budget}</div></div>
         <div class="summary-item"><div class="summary-label">Deadline</div><div class="summary-value">${data.deadline}</div></div>
         <div class="summary-item"><div class="summary-label">Scope</div><div class="summary-value">${data.scope || 'None selected'}</div></div>
+        <div class="summary-item">
+            <div class="summary-label">Brand Archetype Profile</div>
+            <div class="summary-value" style="font-size:0.9rem;">
+                Modern (${data.slider1}%) - Classic<br>
+                Youthful (${data.slider2}%) - Mature<br>
+                Masculine (${data.slider3}%) - Feminine<br>
+                Playful (${data.slider4}%) - Formal<br>
+                Economical (${data.slider5}%) - Premium<br>
+                Organic (${data.slider6}%) - Geometric<br>
+                Symbolic (${data.slider7}%) - Textual
+            </div>
+        </div>
     `;
     summaryContainer.innerHTML = html;
 }
@@ -182,10 +192,18 @@ form.addEventListener('submit', async (e) => {
         }).catch(err => console.error("Email notification failed", err));
 
         // 2. Submit to Firebase Firestore
-        await addDoc(collection(db, "briefs"), {
-            ...payload,
-            createdAt: serverTimestamp()
-        });
+        try {
+            const { db } = await import("./firebase-config.js");
+            const { collection, addDoc, serverTimestamp } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+            
+            await addDoc(collection(db, "briefs"), {
+                ...payload,
+                createdAt: serverTimestamp()
+            });
+        } catch (fbError) {
+            console.error("Firebase module failed to load. This is expected if running locally via file://", fbError);
+            // Proceed to Thank You step anyway so the client gets an email via Formspree.
+        }
 
         // 3. Show Thank You step
         currentStep = 10;

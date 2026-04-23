@@ -130,6 +130,7 @@ body {
     gap: 1rem;
 }
 
+
 .checkbox-group.grid-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -272,4 +273,46 @@ body {
 .thank-you-box {
     text-align: center;
     padding: 4rem 2rem;
+}
+
+/* BRAND SLIDERS */
+.slider-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+.slider-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--gray);
+  width: 80px;
+}
+.slider-label.left { text-align: right; }
+.slider-label.right { text-align: left; }
+
+.brand-slider {
+  flex: 1;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+  outline: none;
+}
+.brand-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--blue-line);
+  cursor: pointer;
+  border: 4px solid var(--black);
+  box-shadow: 0 0 0 1px var(--blue-line);
+  transition: transform 0.2s;
+}
+.brand-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
 }
