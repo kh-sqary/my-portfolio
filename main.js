@@ -69,22 +69,8 @@
   animateRing();
 
   document.querySelectorAll('a, button, .project-card, .skill-pill, .service-item, .hamburger').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      if(ring && cursor) {
-        ring.style.width = '60px';
-        ring.style.height = '60px';
-        ring.style.borderColor = 'rgba(42,110,245,0.8)';
-        cursor.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%) scale(0)`;
-      }
-    });
-    el.addEventListener('mouseleave', () => {
-      if(ring && cursor) {
-        ring.style.width = '38px';
-        ring.style.height = '38px';
-        ring.style.borderColor = 'rgba(42,110,245,0.5)';
-        cursor.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%) scale(1)`;
-      }
-    });
+    el.addEventListener('mouseenter', () => document.body.classList.add('hover-active'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('hover-active'));
   });
 
   // ── MOUSE GLOW ON CARDS ──

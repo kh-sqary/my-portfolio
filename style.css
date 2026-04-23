@@ -206,6 +206,16 @@
     transform: translate(-50%, -50%);
   }
   body:hover #cursor { opacity: 1; }
+  
+  /* CURSOR HOVER STATE */
+  body.hover-active #cursor {
+    opacity: 0 !important;
+  }
+  body.hover-active #cursor-ring {
+    width: 60px !important;
+    height: 60px !important;
+    border-color: rgba(42,110,245,0.8) !important;
+  }
 
   /* ── NOISE OVERLAY ── */
   body::before {
