@@ -1,7 +1,8 @@
   // ── PRELOADER ──
   window.addEventListener('load', () => {
     setTimeout(() => {
-      document.querySelector('.preloader-progress').style.width = '100%';
+      const prog = document.querySelector('.preloader-progress');
+      if (prog) prog.style.width = '100%';
       setTimeout(() => document.body.classList.add('loaded'), 400);
     }, 500);
   });
