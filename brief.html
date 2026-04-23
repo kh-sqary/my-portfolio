@@ -12,7 +12,7 @@
     <header class="brief-header">
         <a href="index.html" class="nav-logo"><img src="image/logo.png" alt="Khaled Shaaban" class="site-logo"></a>
         <div class="progress-container">
-            <div class="progress-text">Step <span id="currentStepNum">1</span> of 8</div>
+            <div class="progress-text">Step <span id="currentStepNum">1</span> of 9</div>
             <div class="progress-track">
                 <div class="progress-bar" id="progressBar" style="width: 12.5%;"></div>
             </div>
@@ -22,8 +22,26 @@
 
     <main class="brief-main">
         <form id="briefForm">
-            <!-- Step 1: Business Information -->
+            <!-- Step 1: Personal Information -->
             <div class="step-card active" id="step-1">
+                <h2>Your Information</h2>
+                <p class="step-desc">Let's get to know you first.</p>
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" name="clientName" required placeholder="John Doe" />
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" name="clientEmail" required placeholder="john@example.com" />
+                </div>
+                <div class="form-group">
+                    <label>WhatsApp Number</label>
+                    <input type="tel" name="clientWhatsapp" required placeholder="+201xxxxxxxxx" />
+                </div>
+            </div>
+
+            <!-- Step 2: Business Information -->
+            <div class="step-card" id="step-2">
                 <h2>Business Information</h2>
                 <p class="step-desc">Let's start with the basics. Who are we designing for?</p>
                 <div class="form-group">
@@ -52,8 +70,8 @@
                 </div>
             </div>
 
-            <!-- Step 2: Target Audience -->
-            <div class="step-card" id="step-2">
+            <!-- Step 3: Target Audience -->
+            <div class="step-card" id="step-3">
                 <h2>Target Audience</h2>
                 <p class="step-desc">Who are you trying to reach and connect with?</p>
                 <div class="form-group">
@@ -76,8 +94,8 @@
                 </div>
             </div>
 
-            <!-- Step 3: Brand Goals -->
-            <div class="step-card" id="step-3">
+            <!-- Step 4: Brand Goals -->
+            <div class="step-card" id="step-4">
                 <h2>Brand Goals</h2>
                 <p class="step-desc">A brand is a tool. What should it achieve?</p>
                 <div class="form-group">
@@ -86,8 +104,8 @@
                 </div>
             </div>
 
-            <!-- Step 4: Brand Personality -->
-            <div class="step-card" id="step-4">
+            <!-- Step 5: Brand Personality -->
+            <div class="step-card" id="step-5">
                 <h2>Brand Personality</h2>
                 <p class="step-desc">If your brand was a person, how would it act?</p>
                 <div class="form-group">
@@ -154,8 +172,8 @@
                 </div>
             </div>
 
-            <!-- Step 5: Competitors -->
-            <div class="step-card" id="step-5">
+            <!-- Step 6: Competitors -->
+            <div class="step-card" id="step-6">
                 <h2>Competitors</h2>
                 <p class="step-desc">Understanding the landscape helps us stand out.</p>
                 <div class="form-group">
@@ -172,8 +190,8 @@
                 </div>
             </div>
 
-            <!-- Step 6: Visual Direction -->
-            <div class="step-card" id="step-6">
+            <!-- Step 7: Visual Direction -->
+            <div class="step-card" id="step-7">
                 <h2>Visual Direction</h2>
                 <p class="step-desc">Help me understand your visual preferences.</p>
                 <div class="form-group">
@@ -203,8 +221,8 @@
                 </div>
             </div>
 
-            <!-- Step 7: Scope of Work -->
-            <div class="step-card" id="step-7">
+            <!-- Step 8: Scope of Work -->
+            <div class="step-card" id="step-8">
                 <h2>Scope of Work</h2>
                 <p class="step-desc">What deliverables do you need for this project?</p>
                 <div class="form-group">
@@ -220,8 +238,8 @@
                 </div>
             </div>
 
-            <!-- Step 8: Budget and Timeline -->
-            <div class="step-card" id="step-8">
+            <!-- Step 9: Budget and Timeline -->
+            <div class="step-card" id="step-9">
                 <h2>Budget and Timeline</h2>
                 <p class="step-desc">Let's align on the commercial feasibility.</p>
                 <div class="form-group">
@@ -245,14 +263,14 @@
             </div>
 
             <!-- Final Confirmation Step -->
-            <div class="step-card" id="step-9">
+            <div class="step-card" id="step-10">
                 <h2>Confirmation Summary</h2>
                 <p class="step-desc">Please review your answers before submitting.</p>
                 <div class="summary-container" id="summaryContainer"></div>
             </div>
 
             <!-- Thank You Step -->
-            <div class="step-card" id="step-10">
+            <div class="step-card" id="step-11">
                 <div class="thank-you-box">
                     <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--blue-line)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                     <h2>Brief Received!</h2>
@@ -262,7 +280,7 @@
             </div>
 
             <div class="brief-actions" id="briefActions">
-                <button type="button" class="btn-secondary" id="prevBtn" style="display:none;">Back</button>
+                <button type="button" class="btn-text-white" id="prevBtn" style="display:none;">Back</button>
                 <button type="button" class="btn-text-blue" id="nextBtn">Next Step →</button>
                 <button type="submit" class="btn-primary" id="submitBtn" style="display:none;">Submit Brief</button>
             </div>

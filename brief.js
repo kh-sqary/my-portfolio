@@ -7,7 +7,7 @@ const progressBar = document.getElementById('progressBar');
 const currentStepNum = document.getElementById('currentStepNum');
 
 let currentStep = 1;
-const totalSteps = 9; // Step 9 is confirmation
+const totalSteps = 10; // Step 10 is confirmation
 
 function updateUI() {
     // Hide all steps
@@ -16,22 +16,22 @@ function updateUI() {
     // Show current step
     document.getElementById(`step-${currentStep}`).classList.add('active');
     
-    // Progress Bar (out of 8 real form steps)
-    const progressObj = Math.min(currentStep, 8) / 8 * 100;
+    // Progress Bar (out of 9 real form steps)
+    const progressObj = Math.min(currentStep, 9) / 9 * 100;
     progressBar.style.width = `${progressObj}%`;
-    currentStepNum.textContent = Math.min(currentStep, 8);
+    currentStepNum.textContent = Math.min(currentStep, 9);
 
     // Buttons
     if (currentStep === 1) {
         prevBtn.style.display = 'none';
         nextBtn.style.display = 'inline-block';
         submitBtn.style.display = 'none';
-    } else if (currentStep === 9) {
+    } else if (currentStep === 10) {
         prevBtn.style.display = 'inline-block';
         nextBtn.style.display = 'none';
         submitBtn.style.display = 'inline-block';
         generateSummary();
-    } else if (currentStep === 10) {
+    } else if (currentStep === 11) {
         document.getElementById('briefActions').style.display = 'none';
         document.querySelector('.progress-container').style.display = 'none';
     } else {
@@ -134,6 +134,7 @@ function generateSummary() {
     data.referenceLinks = formData.getAll('referenceLinks[]').filter(v=>v).join(', ');
 
     const html = `
+        <div class="summary-item"><div class="summary-label">Client Details</div><div class="summary-value">${data.clientName} <br> ${data.clientEmail} <br> ${data.clientWhatsapp}</div></div>
         <div class="summary-item"><div class="summary-label">Brand Name</div><div class="summary-value">${data.brandName}</div></div>
         <div class="summary-item"><div class="summary-label">Business Type</div><div class="summary-value">${data.businessType}</div></div>
         <div class="summary-item"><div class="summary-label">Description</div><div class="summary-value">${data.description}</div></div>
@@ -161,7 +162,7 @@ function generateSummary() {
 // Submission
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    if(currentStep !== 9) return;
+    if(currentStep !== 10) return;
     
     submitBtn.textContent = 'Submitting...';
     submitBtn.disabled = true;
@@ -205,8 +206,22 @@ form.addEventListener('submit', async (e) => {
             // Proceed to Thank You step anyway so the client gets an email via Formspree.
         }
 
-        // 3. Show Thank You step
-        currentStep = 10;
+        // 3. Send to WhatsApp
+        const waNumber = "201xxxxxxxxx"; // REPLACE WITH YOUR NUMBER
+        let waText = `*New Client Brief from ${payload.clientName}*\n\n`;
+        waText += `*Email:* ${payload.clientEmail}\n`;
+        waText += `*WhatsApp:* ${payload.clientWhatsapp}\n\n`;
+        waText += `*Brand Name:* ${payload.brandName}\n`;
+        waText += `*Business Type:* ${payload.businessType}\n`;
+        waText += `*Budget:* ${payload.budget}\n`;
+        waText += `*Deadline:* ${payload.deadline}\n\n`;
+        waText += `(Check your email or Dashboard for full details!)`;
+        
+        const encodedText = encodeURIComponent(waText);
+        window.open(`https://wa.me/${waNumber}?text=${encodedText}`, '_blank');
+
+        // 4. Show Thank You step
+        currentStep = 11;
         updateUI();
 
     } catch (error) {
