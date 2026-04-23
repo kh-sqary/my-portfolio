@@ -318,10 +318,18 @@ body {
 }
 
 /* PDF Print Mode */
+.pdf-mode .brief-main {
+    background-color: #111 !important;
+    padding: 0 !important;
+}
 .pdf-mode .step-card {
-    display: flex !important;
+    display: block !important;
     page-break-after: always;
+    page-break-inside: avoid;
     margin-bottom: 2rem;
+    padding: 2rem !important;
+    background-color: #111 !important;
+    border: none !important;
 }
 .pdf-mode #step-10, .pdf-mode #step-11 {
     display: none !important;

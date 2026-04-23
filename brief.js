@@ -192,15 +192,15 @@ submitBtn.addEventListener('click', async (e) => {
 
     try {
         // 1. Submit to Formspree for email notification
-        fetch('https://formspree.io/f/maqawzbd', {
-            method: 'POST',
-            headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                subject: `New Brief: ${payload.brandName}`,
-                message: JSON.stringify(payload, null, 2),
-                email: 'kh.sqary@gmail.com'
-            })
-        }).catch(err => console.error("Email notification failed", err));
+        try {
+            await fetch('https://formspree.io/f/maqawzbd', {
+                method: 'POST',
+                headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+        } catch (err) {
+            console.error("Email notification failed", err);
+        }
 
         // 2. Submit to Firebase Firestore
         try {

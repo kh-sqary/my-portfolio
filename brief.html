@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Start a Project — Client Brief</title>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+        rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="brief.css" />
 </head>
+
 <body>
     <header class="brief-header">
         <a href="index.html" class="nav-logo"><img src="image/logo.png" alt="Khaled Shaaban" class="site-logo"></a>
@@ -36,7 +40,8 @@
                 </div>
                 <div class="form-group">
                     <label>WhatsApp Number</label>
-                    <input type="tel" name="clientWhatsapp" required placeholder="01xxxxxxxxx" oninput="this.value = this.value.replace(/[^0-9+]/g, '')" />
+                    <input type="tel" name="clientWhatsapp" required placeholder="xxxxxxxxx"
+                        oninput="this.value = this.value.replace(/[^0-9+]/g, '')" />
                 </div>
             </div>
 
@@ -66,7 +71,8 @@
                 </div>
                 <div class="form-group">
                     <label>Short Description</label>
-                    <textarea name="description" rows="4" required placeholder="What do you do? What problem do you solve?"></textarea>
+                    <textarea name="description" rows="4" required
+                        placeholder="What do you do? What problem do you solve?"></textarea>
                 </div>
             </div>
 
@@ -77,20 +83,27 @@
                 <div class="form-group">
                     <label>Age Group</label>
                     <div class="checkbox-group">
-                        <label class="checkbox-label"><input type="checkbox" name="ageGroup" value="13-18"> <span>13–18</span></label>
-                        <label class="checkbox-label"><input type="checkbox" name="ageGroup" value="18-25"> <span>18–25</span></label>
-                        <label class="checkbox-label"><input type="checkbox" name="ageGroup" value="25-35"> <span>25–35</span></label>
-                        <label class="checkbox-label"><input type="checkbox" name="ageGroup" value="35-50"> <span>35–50</span></label>
-                        <label class="checkbox-label"><input type="checkbox" name="ageGroup" value="50+"> <span>50+</span></label>
+                        <label class="checkbox-label"><input type="checkbox" name="ageGroup" value="13-18">
+                            <span>13–18</span></label>
+                        <label class="checkbox-label"><input type="checkbox" name="ageGroup" value="18-25">
+                            <span>18–25</span></label>
+                        <label class="checkbox-label"><input type="checkbox" name="ageGroup" value="25-35">
+                            <span>25–35</span></label>
+                        <label class="checkbox-label"><input type="checkbox" name="ageGroup" value="35-50">
+                            <span>35–50</span></label>
+                        <label class="checkbox-label"><input type="checkbox" name="ageGroup" value="50+">
+                            <span>50+</span></label>
                     </div>
                 </div>
                 <div class="form-group">
                     <label>Interests</label>
-                    <textarea name="interests" rows="3" placeholder="What are their hobbies, lifestyles, and interests?"></textarea>
+                    <textarea name="interests" rows="3"
+                        placeholder="What are their hobbies, lifestyles, and interests?"></textarea>
                 </div>
                 <div class="form-group">
                     <label>Buying Behavior</label>
-                    <textarea name="buyingBehavior" rows="3" placeholder="Do they value price, luxury, convenience, or speed?"></textarea>
+                    <textarea name="buyingBehavior" rows="3"
+                        placeholder="Do they value price, luxury, convenience, or speed?"></textarea>
                 </div>
             </div>
 
@@ -100,7 +113,8 @@
                 <p class="step-desc">A brand is a tool. What should it achieve?</p>
                 <div class="form-group">
                     <label>What is the main goal of your brand?</label>
-                    <textarea name="mainGoal" rows="5" required placeholder="For example: I want to position my brand as a premium choice, or I need to attract a younger audience..."></textarea>
+                    <textarea name="mainGoal" rows="5" required
+                        placeholder="For example: I want to position my brand as a premium choice, or I need to attract a younger audience..."></textarea>
                 </div>
             </div>
 
@@ -130,10 +144,12 @@
                         <input type="text" name="word3" placeholder="Word 3" required />
                     </div>
                 </div>
-                
+
                 <div class="form-group" style="margin-top: 3rem;">
-                    <label style="margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1rem;">Brand Positioning Sliders</label>
-                    
+                    <label
+                        style="margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1rem;">Brand
+                        Positioning Sliders</label>
+
                     <div class="slider-row">
                         <span class="slider-label left">Modern</span>
                         <input type="range" name="slider1" min="1" max="100" value="50" class="brand-slider" />
@@ -182,11 +198,13 @@
                 </div>
                 <div class="form-group">
                     <label>What do you like about them?</label>
-                    <textarea name="competitorsLike" rows="2" placeholder="Any specific visual or strategic moves they made that you appreciate?"></textarea>
+                    <textarea name="competitorsLike" rows="2"
+                        placeholder="Any specific visual or strategic moves they made that you appreciate?"></textarea>
                 </div>
                 <div class="form-group">
                     <label>What do you want to do differently?</label>
-                    <textarea name="competitorsDiff" rows="2" placeholder="How will you stand out from them?"></textarea>
+                    <textarea name="competitorsDiff" rows="2"
+                        placeholder="How will you stand out from them?"></textarea>
                 </div>
             </div>
 
@@ -198,7 +216,8 @@
                     <label>Preferred Colors</label>
                     <div class="color-picker-wrapper">
                         <input type="color" id="preferredColorBtn" value="#000000" />
-                        <button type="button" class="btn-text-blue" id="addPreferredColor" style="padding: 0 1rem; font-size: 0.75rem;">+ Add Color</button>
+                        <button type="button" class="btn-text-blue" id="addPreferredColor"
+                            style="padding: 0 1rem; font-size: 0.75rem;">+ Add Color</button>
                     </div>
                     <div class="color-swatches" id="preferredColorsContainer"></div>
                     <input type="hidden" name="preferredColors" id="preferredColorsData" />
@@ -207,7 +226,8 @@
                     <label>Colors to Avoid</label>
                     <div class="color-picker-wrapper">
                         <input type="color" id="avoidColorBtn" value="#ff0000" />
-                        <button type="button" class="btn-text-blue" id="addAvoidColor" style="padding: 0 1rem; font-size: 0.75rem;">+ Add Color</button>
+                        <button type="button" class="btn-text-blue" id="addAvoidColor"
+                            style="padding: 0 1rem; font-size: 0.75rem;">+ Add Color</button>
                     </div>
                     <div class="color-swatches" id="avoidColorsContainer"></div>
                     <input type="hidden" name="avoidColors" id="avoidColorsData" />
@@ -215,9 +235,11 @@
                 <div class="form-group">
                     <label>Reference Links (Inspiration)</label>
                     <div id="referenceLinksContainer">
-                        <input type="url" name="referenceLinks[]" placeholder="https://pinterest.com/..." class="repeater-input" />
+                        <input type="url" name="referenceLinks[]" placeholder="https://pinterest.com/..."
+                            class="repeater-input" />
                     </div>
-                    <button type="button" class="btn-text-blue mt-1" id="addLinkBtn" style="padding: 0.5rem 0;">+ Add Another Link</button>
+                    <button type="button" class="btn-text-blue mt-1" id="addLinkBtn" style="padding: 0.5rem 0;">+ Add
+                        Another Link</button>
                 </div>
             </div>
 
@@ -227,13 +249,20 @@
                 <p class="step-desc">What deliverables do you need for this project?</p>
                 <div class="form-group">
                     <div class="checkbox-group grid-2">
-                        <label class="checkbox-label"><input type="checkbox" name="scope" value="Logo Design"> <span>Logo Design</span></label>
-                        <label class="checkbox-label"><input type="checkbox" name="scope" value="Full Brand Identity"> <span>Full Brand Identity</span></label>
-                        <label class="checkbox-label"><input type="checkbox" name="scope" value="Brand Guidelines"> <span>Brand Guidelines</span></label>
-                        <label class="checkbox-label"><input type="checkbox" name="scope" value="Business Card"> <span>Business Card</span></label>
-                        <label class="checkbox-label"><input type="checkbox" name="scope" value="Social Media Kit"> <span>Social Media Kit</span></label>
-                        <label class="checkbox-label"><input type="checkbox" name="scope" value="Packaging"> <span>Packaging</span></label>
-                        <label class="checkbox-label"><input type="checkbox" name="scope" value="Other"> <span>Other</span></label>
+                        <label class="checkbox-label"><input type="checkbox" name="scope" value="Logo Design">
+                            <span>Logo Design</span></label>
+                        <label class="checkbox-label"><input type="checkbox" name="scope" value="Full Brand Identity">
+                            <span>Full Brand Identity</span></label>
+                        <label class="checkbox-label"><input type="checkbox" name="scope" value="Brand Guidelines">
+                            <span>Brand Guidelines</span></label>
+                        <label class="checkbox-label"><input type="checkbox" name="scope" value="Business Card">
+                            <span>Business Card</span></label>
+                        <label class="checkbox-label"><input type="checkbox" name="scope" value="Social Media Kit">
+                            <span>Social Media Kit</span></label>
+                        <label class="checkbox-label"><input type="checkbox" name="scope" value="Packaging">
+                            <span>Packaging</span></label>
+                        <label class="checkbox-label"><input type="checkbox" name="scope" value="Other">
+                            <span>Other</span></label>
                     </div>
                 </div>
             </div>
@@ -272,9 +301,14 @@
             <!-- Thank You Step -->
             <div class="step-card" id="step-11">
                 <div class="thank-you-box">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--blue-line)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none"
+                        stroke="var(--blue-line)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
                     <h2>Brief Received!</h2>
-                    <p class="step-desc">Your brief has been received. Khaled will review it and get back to you within 24 hours.</p>
+                    <p class="step-desc">Your brief has been received. Khaled will review it and get back to you within
+                        24 hours.</p>
                     <a href="/" class="btn-primary" style="margin-top:2rem;">Return to Home</a>
                 </div>
             </div>
@@ -282,7 +316,8 @@
             <div class="brief-actions" id="briefActions">
                 <button type="button" class="btn-text-white" id="prevBtn" style="display:none;">Back</button>
                 <button type="button" class="btn-text-blue" id="nextBtn">Next Step →</button>
-                <button type="button" class="btn-text-blue" id="submitBtn" style="display:none; font-weight: bold;">Submit Brief</button>
+                <button type="button" class="btn-text-blue" id="submitBtn"
+                    style="display:none; font-weight: bold;">Submit Brief</button>
             </div>
         </form>
     </main>
@@ -293,4 +328,5 @@
     <script src="brief.js"></script>
     <script src="main.js"></script>
 </body>
+
 </html>
