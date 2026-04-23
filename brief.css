@@ -334,3 +334,53 @@ body {
 .pdf-mode #step-10, .pdf-mode #step-11 {
     display: none !important;
 }
+
+/* ── MOBILE RESPONSIVENESS ── */
+@media (max-width: 768px) {
+    .brief-header {
+        padding: 1rem 1.25rem;
+    }
+    .progress-container {
+        margin: 0 1rem;
+    }
+    .brief-main {
+        padding: 100px 1.25rem 60px;
+    }
+    .step-card h2 {
+        font-size: 1.8rem;
+    }
+    .step-desc {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+    .checkbox-group.grid-2 {
+        grid-template-columns: 1fr;
+    }
+    .slider-row {
+        gap: 0.5rem;
+    }
+    .slider-label {
+        font-size: 0.75rem;
+        width: 60px;
+    }
+    .summary-container {
+        padding: 1.5rem 1rem;
+    }
+    .brief-actions {
+        flex-direction: column-reverse;
+        gap: 1rem;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+    }
+    .brief-actions button {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .progress-text {
+        font-size: 0.75rem;
+    }
+}
