@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start a Project — Client Brief</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="brief.css" />
+</head>
+<body>
+    <header class="brief-header">
+        <a href="/" class="nav-logo"><img src="image/logo.png" alt="Khaled Shaaban" class="site-logo"></a>
+        <div class="progress-container">
+            <div class="progress-text">Step <span id="currentStepNum">1</span> of 8</div>
+            <div class="progress-track">
+                <div class="progress-bar" id="progressBar" style="width: 12.5%;"></div>
+            </div>
+        </div>
+        <a href="/" class="close-btn">✕</a>
+    </header>
+
+    <main class="brief-main">
+        <form id="briefForm">
+            <!-- Step 1: Business Information -->
+            <div class="step-card active" id="step-1">
+                <h2>Business Information</h2>
+                <p class="step-desc">Let's start with the basics. Who are we designing for?</p>
+                <div class="form-group">
+                    <label>Brand Name</label>
+                    <input type="text" name="brandName" required placeholder="Enter your business or product name" />
+                </div>
+                <div class="form-group">
+                    <label>Business Type</label>
+                    <div class="custom-select-wrapper">
+                        <select name="businessType" required>
+                            <option value="">Select an option</option>
+                            <option value="Startup">Startup</option>
+                            <option value="Small Business">Small Business</option>
+                            <option value="Restaurant">Restaurant</option>
+                            <option value="Fashion">Fashion</option>
+                            <option value="Tech">Tech</option>
+                            <option value="Real Estate">Real Estate</option>
+                            <option value="Healthcare">Healthcare</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Short Description</label>
+                    <textarea name="description" rows="4" required placeholder="What do you do? What problem do you solve?"></textarea>
+                </div>
+            </div>
+
+            <!-- Step 2: Target Audience -->
+            <div class="step-card" id="step-2">
+                <h2>Target Audience</h2>
+                <p class="step-desc">Who are you trying to reach and connect with?</p>
+                <div class="form-group">
+                    <label>Age Group</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label"><input type="checkbox" name="ageGroup" value="13-18"> <span>13–18</span></label>
+                        <label class="checkbox-label"><input type="checkbox" name="ageGroup" value="18-25"> <span>18–25</span></label>
+                        <label class="checkbox-label"><input type="checkbox" name="ageGroup" value="25-35"> <span>25–35</span></label>
+                        <label class="checkbox-label"><input type="checkbox" name="ageGroup" value="35-50"> <span>35–50</span></label>
+                        <label class="checkbox-label"><input type="checkbox" name="ageGroup" value="50+"> <span>50+</span></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Interests</label>
+                    <textarea name="interests" rows="3" placeholder="What are their hobbies, lifestyles, and interests?"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Buying Behavior</label>
+                    <textarea name="buyingBehavior" rows="3" placeholder="Do they value price, luxury, convenience, or speed?"></textarea>
+                </div>
+            </div>
+
+            <!-- Step 3: Brand Goals -->
+            <div class="step-card" id="step-3">
+                <h2>Brand Goals</h2>
+                <p class="step-desc">A brand is a tool. What should it achieve?</p>
+                <div class="form-group">
+                    <label>What is the main goal of your brand?</label>
+                    <textarea name="mainGoal" rows="5" required placeholder="For example: I want to position my brand as a premium choice, or I need to attract a younger audience..."></textarea>
+                </div>
+            </div>
+
+            <!-- Step 4: Brand Personality -->
+            <div class="step-card" id="step-4">
+                <h2>Brand Personality</h2>
+                <p class="step-desc">If your brand was a person, how would it act?</p>
+                <div class="form-group">
+                    <label>Select Tone</label>
+                    <div class="tags-group" id="toneSelector">
+                        <div class="tag">Modern</div>
+                        <div class="tag">Luxury</div>
+                        <div class="tag">Playful</div>
+                        <div class="tag">Bold</div>
+                        <div class="tag">Minimal</div>
+                        <div class="tag">Traditional</div>
+                        <div class="tag">Friendly</div>
+                        <div class="tag">Professional</div>
+                    </div>
+                    <input type="hidden" name="brandTone" id="brandToneInput" />
+                </div>
+                <div class="form-group row-group">
+                    <label>Describe your brand in 3 words:</label>
+                    <div class="three-words">
+                        <input type="text" name="word1" placeholder="Word 1" required />
+                        <input type="text" name="word2" placeholder="Word 2" required />
+                        <input type="text" name="word3" placeholder="Word 3" required />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5: Competitors -->
+            <div class="step-card" id="step-5">
+                <h2>Competitors</h2>
+                <p class="step-desc">Understanding the landscape helps us stand out.</p>
+                <div class="form-group">
+                    <label>Competitor Names / Links</label>
+                    <textarea name="competitors" rows="3" placeholder="List 2-3 competitors"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>What do you like about them?</label>
+                    <textarea name="competitorsLike" rows="2" placeholder="Any specific visual or strategic moves they made that you appreciate?"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>What do you want to do differently?</label>
+                    <textarea name="competitorsDiff" rows="2" placeholder="How will you stand out from them?"></textarea>
+                </div>
+            </div>
+
+            <!-- Step 6: Visual Direction -->
+            <div class="step-card" id="step-6">
+                <h2>Visual Direction</h2>
+                <p class="step-desc">Help me understand your visual preferences.</p>
+                <div class="form-group">
+                    <label>Preferred Colors</label>
+                    <div class="color-picker-wrapper">
+                        <input type="color" id="preferredColorBtn" value="#000000" />
+                        <button type="button" class="btn-secondary" id="addPreferredColor">Add Color</button>
+                    </div>
+                    <div class="color-swatches" id="preferredColorsContainer"></div>
+                    <input type="hidden" name="preferredColors" id="preferredColorsData" />
+                </div>
+                <div class="form-group">
+                    <label>Colors to Avoid</label>
+                    <div class="color-picker-wrapper">
+                        <input type="color" id="avoidColorBtn" value="#ff0000" />
+                        <button type="button" class="btn-secondary" id="addAvoidColor">Add Color</button>
+                    </div>
+                    <div class="color-swatches" id="avoidColorsContainer"></div>
+                    <input type="hidden" name="avoidColors" id="avoidColorsData" />
+                </div>
+                <div class="form-group">
+                    <label>Reference Links (Inspiration)</label>
+                    <div id="referenceLinksContainer">
+                        <input type="url" name="referenceLinks[]" placeholder="https://pinterest.com/..." class="repeater-input" />
+                    </div>
+                    <button type="button" class="btn-secondary sm mt-1" id="addLinkBtn">+ Add Another Link</button>
+                </div>
+            </div>
+
+            <!-- Step 7: Scope of Work -->
+            <div class="step-card" id="step-7">
+                <h2>Scope of Work</h2>
+                <p class="step-desc">What deliverables do you need for this project?</p>
+                <div class="form-group">
+                    <div class="checkbox-group grid-2">
+                        <label class="checkbox-label"><input type="checkbox" name="scope" value="Logo Design"> <span>Logo Design</span></label>
+                        <label class="checkbox-label"><input type="checkbox" name="scope" value="Full Brand Identity"> <span>Full Brand Identity</span></label>
+                        <label class="checkbox-label"><input type="checkbox" name="scope" value="Brand Guidelines"> <span>Brand Guidelines</span></label>
+                        <label class="checkbox-label"><input type="checkbox" name="scope" value="Business Card"> <span>Business Card</span></label>
+                        <label class="checkbox-label"><input type="checkbox" name="scope" value="Social Media Kit"> <span>Social Media Kit</span></label>
+                        <label class="checkbox-label"><input type="checkbox" name="scope" value="Packaging"> <span>Packaging</span></label>
+                        <label class="checkbox-label"><input type="checkbox" name="scope" value="Other"> <span>Other</span></label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 8: Budget and Timeline -->
+            <div class="step-card" id="step-8">
+                <h2>Budget and Timeline</h2>
+                <p class="step-desc">Let's align on the commercial feasibility.</p>
+                <div class="form-group">
+                    <label>Budget Range</label>
+                    <div class="custom-select-wrapper">
+                        <select name="budget" required>
+                            <option value="">Select range</option>
+                            <option value="Under $500">Under $500</option>
+                            <option value="$500–$1000">$500–$1000</option>
+                            <option value="$1000–$2000">$1000–$2000</option>
+                            <option value="$2000–$5000">$2000–$5000</option>
+                            <option value="$5000+">$5000+</option>
+                            <option value="Let's Discuss">Let's Discuss</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Deadline</label>
+                    <input type="date" name="deadline" required />
+                </div>
+            </div>
+
+            <!-- Final Confirmation Step -->
+            <div class="step-card" id="step-9">
+                <h2>Confirmation Summary</h2>
+                <p class="step-desc">Please review your answers before submitting.</p>
+                <div class="summary-container" id="summaryContainer"></div>
+            </div>
+
+            <!-- Thank You Step -->
+            <div class="step-card" id="step-10">
+                <div class="thank-you-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    <h2>Brief Received!</h2>
+                    <p class="step-desc">Your brief has been received. Khaled will review it and get back to you within 24 hours.</p>
+                    <a href="/" class="btn-primary" style="margin-top:2rem;">Return to Home</a>
+                </div>
+            </div>
+
+            <div class="brief-actions" id="briefActions">
+                <button type="button" class="btn-secondary" id="prevBtn" style="display:none;">Back</button>
+                <button type="button" class="btn-primary" id="nextBtn">Next Step →</button>
+                <button type="submit" class="btn-primary" id="submitBtn" style="display:none;">Submit Brief</button>
+            </div>
+        </form>
+    </main>
+
+    <script type="module" src="brief.js"></script>
+</body>
+</html>

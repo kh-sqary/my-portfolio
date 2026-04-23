@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details — Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/dashboard.css" />
+    <script type="module" src="/auth-guard.js"></script>
+    <style>
+        .detail-header { display: flex; justify-content: space-between; align-items:flex-start; margin-bottom: 2rem; }
+        .back-btn { color: var(--gray); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; transition: 0.3s; }
+        .back-btn:hover { color: var(--primary); }
+        .detail-title { font-family: var(--font-display); font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .detail-meta { color: var(--gray); font-size: 1rem; display: flex; gap: 1rem; align-items: center; }
+        .meta-tag { background: rgba(42, 110, 245, 0.1); color: var(--primary); padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;}
+        
+        .actions-group { display: flex; gap: 1rem; align-items: center; }
+        .status-dropdown { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--text); padding: 0.6rem 1rem; border-radius: 0.5rem; font-family: inherit; font-size: 0.9rem; cursor: pointer; }
+        
+        .tabs { display: flex; gap: 2rem; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 2rem; }
+        .tab { padding: 1rem 0; color: var(--gray); cursor: pointer; border-bottom: 2px solid transparent; transition: 0.3s; }
+        .tab.active { color: var(--primary); border-color: var(--primary); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        .info-grid { display: grid; grid-template-columns: 1fr 300px; gap: 2rem; }
+        @media (max-width: 900px) { .info-grid { grid-template-columns: 1fr; } }
+        
+        .rich-content { background: rgba(255,255,255,0.02); padding: 2rem; border-radius: 1rem; line-height: 1.6; border: 1px solid rgba(255,255,255,0.05); }
+        .rich-content img { max-width: 100%; border-radius: 0.5rem; margin: 1rem 0; }
+        .rich-content h1, .rich-content h2, .rich-content h3 { margin-top: 1.5rem; margin-bottom: 1rem; font-family: var(--font-display); }
+        
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem; }
+        .gallery-item { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 0.5rem; cursor: pointer; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1); }
+        .gallery-item:hover { opacity: 0.8; transform: scale(1.02); border-color: var(--primary); }
+
+        .side-widget { background: rgba(255,255,255,0.02); padding: 1.5rem; border-radius: 1rem; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.05); }
+        .side-widget h4 { margin-bottom: 1rem; font-family: var(--font-display); color: var(--gray); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+        .pdf-btn { display: flex; align-items: center; gap: 0.5rem; color: var(--text); text-decoration: none; background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 0.5rem; transition: 0.3s; }
+        .pdf-btn:hover { background: rgba(42, 110, 245, 0.1); color: var(--primary); }
+
+        /* Lightbox */
+        .lightbox { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(5,5,8,0.95); z-index: 1000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.3s; }
+        .lightbox.active { opacity: 1; pointer-events: all; }
+        .lightbox img { max-width: 90%; max-height: 90vh; border-radius: 0.5rem; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .lightbox-close { position: absolute; top: 2rem; right: 2rem; color: #fff; font-size: 2rem; cursor: pointer; }
+    </style>
+</head>
+<body class="dashboard-body">
+
+    <aside class="sidebar">
+        <div class="sidebar-logo"><img src="image/logo.png" alt="Khaled Shaaban" class="site-logo"></div>
+        <nav class="sidebar-nav">
+            <a href="/dashboard" class="nav-item active">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                All Projects
+            </a>
+            <a href="/dashboard/projects/new" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                Add New Project
+            </a>
+            <a href="/dashboard/briefs" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                Client Briefs
+            </a>
+        </nav>
+    </aside>
+
+    <main class="dashboard-main">
+        <header class="dashboard-header">
+            <div class="header-left">
+                <div class="mobile-menu-trigger"><span></span><span></span><span></span></div>
+                <h1>Project View</h1>
+            </div>
+            <div class="header-right actions-group">
+                <select class="status-dropdown" id="statusDropdown">
+                    <option value="New">New</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Completed">Completed</option>
+                </select>
+                <button class="btn-primary sm" id="editBtn" style="background: rgba(255,255,255,0.1); border-color:transparent; color:#fff;">Edit Project</button>
+                <button class="btn-primary sm" id="deleteBtn" style="background: rgba(255, 74, 74, 0.1); color: #ff4a4a; border-color: transparent;">Delete</button>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <a href="/dashboard" class="back-btn">← Back to Projects</a>
+            
+            <div class="detail-header" id="projectHeader">
+                <div>
+                    <h2 class="detail-title">Loading...</h2>
+                    <div class="detail-meta">
+                        <span class="meta-tag">Loading...</span>
+                        <span>Client: Loading...</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tabs">
+                <div class="tab active" data-target="tab-details">Project Details</div>
+                <div class="tab" data-target="tab-brief">Client Brief</div>
+            </div>
+
+            <div class="tab-content active" id="tab-details">
+                <div class="info-grid">
+                    <div class="main-col">
+                        <div class="rich-content" id="projectDescription"></div>
+                        <div class="gallery-grid" id="imageGallery"></div>
+                    </div>
+                    <div class="side-col">
+                        <div class="side-widget" id="pdfWidget" style="display:none;">
+                            <h4>Brand Guidelines</h4>
+                            <a href="#" target="_blank" class="pdf-btn" id="pdfLink">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2v6h6M14 2L4 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8z"></path></svg>
+                                View PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-brief">
+                <div class="rich-content" id="briefContent">
+                    Loading linked brief...
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-close" id="lightboxClose">✕</div>
+        <img src="" alt="Zoomed Graphic" id="lightboxImg" />
+    </div>
+
+    <script type="module" src="/dashboard-project-detail.js"></script>
+</body>
+</html>

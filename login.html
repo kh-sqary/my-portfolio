@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — Khaled Shaaban</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-card">
+      <div class="login-logo"><img src="image/logo.png" alt="Khaled Shaaban" class="site-logo"></div>
+      <h2>Welcome Back, Khaled</h2>
+      <p class="login-sub">Sign in to access your dashboard.</p>
+      
+      <form id="loginForm">
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="emailInput" value="kh.sqary@gmail.com" required readonly />
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="passwordInput" placeholder="••••••••" required />
+        </div>
+        <div id="errorMessage" class="error-msg"></div>
+        <button type="submit" class="btn-primary login-btn">Sign In</button>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="login.js"></script>
+</body>
+</html>

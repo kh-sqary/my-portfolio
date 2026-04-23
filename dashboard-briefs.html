@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Briefs — Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/dashboard.css" />
+    <script type="module" src="/auth-guard.js"></script>
+    <style>
+        .table-container { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 1rem; overflow-x: auto; }
+        .data-table { width: 100%; border-collapse: collapse; min-width: 800px; }
+        .data-table th, .data-table td { padding: 1.25rem 1.5rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--text); }
+        .data-table th { color: var(--gray); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500; }
+        .data-table tr:hover { background: rgba(255,255,255,0.01); }
+        .data-table td { font-size: 0.95rem; }
+        .table-action { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: 0.3s; }
+        .table-action:hover { opacity: 0.8; }
+        
+        /* Specific statuses */
+        .badge.brief-new { background: rgba(42, 110, 245, 0.1); color: #2a6ef5; }
+        .badge.brief-review { background: rgba(245, 158, 42, 0.1); color: #f59e2a; }
+        .badge.brief-accepted { background: rgba(42, 245, 110, 0.1); color: #2af56e; }
+        .badge.brief-rejected { background: rgba(255, 74, 74, 0.1); color: #ff4a4a; }
+    </style>
+</head>
+<body class="dashboard-body">
+
+    <aside class="sidebar">
+        <div class="sidebar-logo"><img src="image/logo.png" alt="Khaled Shaaban" class="site-logo"></div>
+        <nav class="sidebar-nav">
+            <a href="/dashboard" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                All Projects
+            </a>
+            <a href="/dashboard/projects/new" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                Add New Project
+            </a>
+            <a href="/dashboard/briefs" class="nav-item active">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                Client Briefs
+            </a>
+        </nav>
+    </aside>
+
+    <main class="dashboard-main">
+        <header class="dashboard-header">
+            <div class="header-left">
+                <div class="mobile-menu-trigger"><span></span><span></span><span></span></div>
+                <h1>Client Briefs</h1>
+            </div>
+            <div class="header-right"></div>
+        </header>
+
+        <div class="dashboard-content">
+            <div class="dashboard-toolbar">
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="New">New</button>
+                    <button class="filter-btn" data-filter="Under Review">Under Review</button>
+                    <button class="filter-btn" data-filter="Accepted">Accepted</button>
+                    <button class="filter-btn" data-filter="Rejected">Rejected</button>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Brand Name</th>
+                            <th>Business Type</th>
+                            <th>Budget</th>
+                            <th>Deadline</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="briefsTableBody">
+                        <tr><td colspan="7">Loading briefs...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="/dashboard-briefs.js"></script>
+</body>
+</html>

@@ -1,3 +1,49 @@
+  @font-face {
+    font-family: 'TerminaTest';
+    src: url('fonts/TerminaTest-Thin.otf') format('opentype');
+    font-weight: 100;
+  }
+  @font-face {
+    font-family: 'TerminaTest';
+    src: url('fonts/TerminaTest-ExtraLight.otf') format('opentype');
+    font-weight: 200;
+  }
+  @font-face {
+    font-family: 'TerminaTest';
+    src: url('fonts/TerminaTest-Light.otf') format('opentype');
+    font-weight: 300;
+  }
+  @font-face {
+    font-family: 'TerminaTest';
+    src: url('fonts/TerminaTest-Regular.otf') format('opentype');
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: 'TerminaTest';
+    src: url('fonts/TerminaTest-Medium.otf') format('opentype');
+    font-weight: 500;
+  }
+  @font-face {
+    font-family: 'TerminaTest';
+    src: url('fonts/TerminaTest-Demi.otf') format('opentype');
+    font-weight: 600;
+  }
+  @font-face {
+    font-family: 'TerminaTest';
+    src: url('fonts/TerminaTest-Bold.otf') format('opentype');
+    font-weight: 700;
+  }
+  @font-face {
+    font-family: 'TerminaTest';
+    src: url('fonts/TerminaTest-Heavy.otf') format('opentype');
+    font-weight: 800;
+  }
+  @font-face {
+    font-family: 'TerminaTest';
+    src: url('fonts/TerminaTest-Black.otf') format('opentype');
+    font-weight: 900;
+  }
+
   :root {
     --black: #050508;
     --blue-line: #2a6ef5;
@@ -8,9 +54,10 @@
     --glass-hover: rgba(255,255,255,0.08);
     --white: #f0f0f5;
     --gray: rgba(240,240,245,0.45);
-    --font-display: 'Syne', sans-serif;
-    --font-body: 'DM Sans', sans-serif;
+    --font-display: 'TerminaTest', sans-serif;
+    --font-body: 'TerminaTest', sans-serif;
   }
+
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -32,12 +79,11 @@
     transition: opacity 0.8s ease, visibility 0.8s;
   }
   .preloader-content { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
-  .preloader-logo {
-    font-family: var(--font-display); font-weight: 800; font-size: 2.5rem; color: var(--white);
-    letter-spacing: -0.02em; animation: pulse-logo 2s infinite;
+  .preloader-logo img {
+    height: 45px; width: auto;
+    animation: pulse-logo 2s infinite;
   }
   @keyframes pulse-logo { 0%,100%{opacity:1;} 50%{opacity:0.5;} }
-  .preloader-logo span { color: var(--blue-line); }
   .preloader-bar {
     width: 150px; height: 2px; background: rgba(255,255,255,0.1); overflow: hidden;
   }
@@ -189,14 +235,11 @@
     -webkit-backdrop-filter: blur(18px);
     border-bottom: 1px solid rgba(255,255,255,0.05);
   }
-  .nav-logo {
-    font-family: var(--font-display);
-    font-weight: 800; font-size: 1.1rem;
-    letter-spacing: -0.02em;
-    color: var(--white);
-    text-decoration: none;
+  .site-logo {
+    height: 38px;
+    width: auto;
+    display: block;
   }
-  .nav-logo span { color: var(--blue-line); }
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
   .nav-links a {
     font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;

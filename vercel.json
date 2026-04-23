@@ -1,0 +1,33 @@
+{
+  "rewrites": [
+    {
+      "source": "/login",
+      "destination": "/login.html"
+    },
+    {
+      "source": "/dashboard",
+      "destination": "/dashboard.html"
+    },
+    {
+      "source": "/dashboard/projects/new",
+      "destination": "/dashboard-project-new.html"
+    },
+    {
+      "source": "/dashboard/projects/(.*)",
+      "destination": "/dashboard-project-detail.html"
+    },
+    {
+      "source": "/dashboard/briefs",
+      "destination": "/dashboard-briefs.html"
+    },
+    {
+      "source": "/dashboard/briefs/(.*)",
+      "destination": "/dashboard-brief-detail.html"
+    },
+    {
+      "source": "/brief",
+      "destination": "/brief.html"
+    }
+  ],
+  "cleanUrls": true
+}
